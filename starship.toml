@@ -8,12 +8,18 @@ $username\
 $directory\
 [\ue0b0](fg:color_bg2 bg:color_aqua)\
 $git_branch\
+$git_commit\
 [\ue0b0](fg:color_aqua bg:color_blue)\
 $git_status\
 $git_state\
-[\ue0b0](fg:color_blue bg:color_bg1)\
-$cmd_duration\
+[\ue0b0](fg:color_blue)\
 $character\
+"""
+
+right_format = """
+([\ue0be](fg:color_bg1)\
+$cmd_duration\
+[\ue0bc](fg:color_bg1))\
 """
 
 [palettes.gruvbox_dark]
@@ -46,7 +52,7 @@ format = """
 [\ue0b0](fg:color_orange bg:color_bg2)"""
 
 [directory]
-truncate_to_repo = false
+truncate_to_repo = true
 truncation_symbol = "\uf141/"
 
 format = '[ $path ]($style)([$read_only ]($read_only_style))'
@@ -64,6 +70,10 @@ read_only_style = 'fg:color_red bg:color_bg2'
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 style = 'fg:color_fg0 bg:color_aqua'
 
+[git_commit]
+format = '[\($hash$tag\) ]($style)'
+style = 'fg:color_fg0 bg:color_aqua'
+
 [git_status]
 format = '([ $all_status$ahead_behind ]($style))'
 style = 'fg:color_fg0 bg:color_blue'
@@ -76,13 +86,14 @@ format = """
 """
 style = 'bold fg:color_bg1 bg:color_yellow'
 
+[character]
+success_symbol = ""
+error_symbol = """
+[\ue0d7](fg:color_red)\
+[ ERR ](bold fg:color_fg1 bg:color_red)\
+[\ue0b0](fg:color_red)\
+"""
+
 [cmd_duration]
 format = "[ \uf4e3 $duration ]($style)"
 style = 'fg:color_fg4 bg:color_bg1'
-
-[character]
-success_symbol = "[\ue0b0](fg:color_bg1)"
-error_symbol = """
-[\ue0b0](fg:color_bg1 bg:color_red)\
-[ ERR ](bold fg:color_fg1 bg:color_red)\
-[\ue0b0](fg:color_red)"""
