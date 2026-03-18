@@ -3,14 +3,10 @@
 add_newline = false
 palette = 'gruvbox_dark'
 
-# [ foo ](fg:color_fg0 bg:color_orange)\
-# [\ue0bc](fg:color_orange bg:color_bg1)\
-# [\ue0bc](fg:color_bg1 bg:color_bg2)\
-
-
 format = """
-($git_branch\
+($git_branch$git_commit\
 [\ue0bc](fg:color_blue bg:color_bg1)\
+$git_state\
 $git_status\
 [\ue0bc](fg:color_bg1 bg:color_bg2))\
 $directory\
@@ -56,54 +52,39 @@ color_purple = '#b16286'
 color_red = '#cc241d'
 color_yellow = '#d79921'
 
-[username]
-show_always = true
-format = """
-[ $user ](fg:color_fg0 bg:color_orange)\
-[\ue0b0](fg:color_orange bg:color_bg2)"""
-
 [directory]
 truncate_to_repo = true
 truncation_symbol = "\uf141/"
 
 format = '[ $path ]($style)([$read_only ]($read_only_style))'
-repo_root_format = """
-[ $repo_root]($repo_root_style)\
-[$path ]($style)([$read_only ]($read_only_style))"""
+repo_root_format = '[ $repo_root]($repo_root_style)[$path ]($style)([$read_only ]($read_only_style))'
 
-before_repo_root_style = 'fg:color_fg0 bg:color_bg2'
-repo_root_style = 'bold fg:color_fg0 bg:color_bg2'
 style = 'fg:color_fg0 bg:color_bg2'
+repo_root_style = 'bold fg:color_fg0 bg:color_bg2'
 read_only_style = 'fg:color_red bg:color_bg2'
 
 [git_branch]
-format = """
-[ $symbol$branch(:$remote_branch) ]($style)\
-"""
-
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
 style = 'fg:color_fg0 bg:color_blue'
 
 [git_commit]
 format = '[\($hash$tag\) ]($style)'
-style = 'fg:color_fg0 bg:color_aqua'
+style = 'fg:color_fg0 bg:color_blue'
 
 [git_status]
-format = """
-([ $all_status$ahead_behind ]($style))\
-"""
-
+format = '([ $all_status$ahead_behind ]($style))'
 style = 'fg:color_fg4 bg:color_bg1'
 
 [git_state]
 format = """
-[\ue0bc](fg:color_blue bg:color_yellow)\
+[\ue0bc](fg:color_bg1 bg:color_orange)\
 [ $state( $progress_current/$progress_total) ]($style)\
-[\ue0bc](fg:color_yellow bg:color_blue)\
+[\ue0bc](fg:color_orange bg:color_bg1)\
 """
-style = 'bold fg:color_bg1 bg:color_yellow'
+style = 'bold fg:color_fg1 bg:color_orange'
 
 [character]
-success_symbol = "[\ue0b1](fg:color_green)"
+success_symbol = "[\ue0b1](fg:color_bg2)"
 error_symbol = "[\ue0b1](fg:color_orange)"
 
 [cmd_duration]
