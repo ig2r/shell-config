@@ -10,23 +10,12 @@ $git_state\
 $git_status\
 [\ue0bc](fg:color_bg1 bg:color_bg2))\
 $directory\
-[\ue0b0](fg:color_bg2)\
-$character\
+[\ue0b0 ](fg:color_bg2)\
 """
 
-# $git_branch\
-# $git_commit\
-# [\ue0b0](fg:color_aqua bg:color_blue)\
-# $git_status\
-# $git_state\
-# [\ue0b0](fg:color_blue)\
-# $character\
-
-
 right_format = """
-([\ue0be](fg:color_bg1)\
 $cmd_duration\
-[\ue0bc](fg:color_bg1))\
+$status\
 """
 
 [palettes.gruvbox_dark]
@@ -83,10 +72,11 @@ format = """
 """
 style = 'bold fg:color_fg1 bg:color_orange'
 
-[character]
-success_symbol = "[\ue0b1](fg:color_bg2)"
-error_symbol = "[\ue0b1](fg:color_orange)"
-
 [cmd_duration]
-format = "[ \uf4e3 $duration ]($style)"
-style = 'fg:color_fg4 bg:color_bg1'
+format = "[\uf4e3 $duration ]($style)"
+style = 'fg:color_fg4'
+
+[status]
+disabled = false
+format = "[\uf467 $status ]($style)"
+style = 'bold fg:color_red'
