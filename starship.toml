@@ -4,18 +4,16 @@ add_newline = false
 palette = 'gruvbox_dark'
 
 format = """
-($git_branch$git_commit\
-[\ue0bc](fg:color_blue bg:color_bg1)\
-$git_state\
-$git_status\
-[\ue0bc](fg:color_bg1 bg:color_bg2))\
-$directory\
-[\ue0b0 ](fg:color_bg2)\
+[ $directory](bg:color_blue_bright)[\ue0b0](fg:color_blue_bright)\
+([\ue0d7](fg:color_bg1)[ $git_branch$git_commit\
+([\ue0c6 $git_state ](fg:color_bg1 bg:color_orange)[\ue0c6 ](fg:color_orange bg:color_bg1))\
+$git_status](bg:color_bg1)[\ue0b0](fg:color_bg1))\
+[ ]()
 """
 
 right_format = """
-$cmd_duration\
-$status\
+([\ue0b6](fg:color_red_bright)$status[\ue0b4](fg:color_red_bright) )\
+$git_metrics\
 """
 
 [palettes.gruvbox_dark]
@@ -34,49 +32,53 @@ color_bg4 = '#7c6f63'
 color_blue = '#458588'
 color_blue_bright = '#83a598'
 color_aqua = '#689d6a'
+color_aqua_bright = '#8ec07c'
 color_green = '#98971a'
 color_green_bright = '#b8bb26'
 color_orange = '#d65d0e'
+color_orange_bright = '#fe8019'
 color_purple = '#b16286'
+color_purple_bright = '#d3869b'
 color_red = '#cc241d'
+color_red_bright = '#fb4934'
 color_yellow = '#d79921'
+color_yellow_bright = '#fabd2f'
 
 [directory]
 truncate_to_repo = true
 truncation_symbol = "\uf141/"
-
-format = '[ $path ]($style)([$read_only ]($read_only_style))'
-repo_root_format = '[ $repo_root]($repo_root_style)[$path ]($style)([$read_only ]($read_only_style))'
-
-style = 'fg:color_fg0 bg:color_bg2'
-repo_root_style = 'bold fg:color_fg0 bg:color_bg2'
-read_only_style = 'fg:color_red bg:color_bg2'
+style = 'fg:#000000 bg:color_blue_bright'
+repo_root_style = 'fg:bold #000000 bg:color_blue_bright'
+#read_only = " \uea75"
+read_only = " \uf023"
+read_only_style = 'fg:#000000 bg:color_blue_bright'
 
 [git_branch]
-format = '[ $symbol$branch(:$remote_branch) ]($style)'
-style = 'fg:color_fg0 bg:color_blue'
+only_attached = true
+format = '[$symbol$branch(:$remote_branch)]($style) '
+style = 'fg:color_blue_bright bg:color_bg1'
+ignore_branches = ['main', 'master']
 
 [git_commit]
-format = '[\($hash$tag\) ]($style)'
-style = 'fg:color_fg0 bg:color_blue'
-
-[git_status]
-format = '([ $all_status$ahead_behind ]($style))'
-style = 'fg:color_fg4 bg:color_bg1'
+format = "[\ueafc $hash$tag]($style) "
+style = 'fg:color_blue_bright bg:color_bg1'
 
 [git_state]
-format = """
-[\ue0bc](fg:color_bg1 bg:color_orange)\
-[ $state( $progress_current/$progress_total) ]($style)\
-[\ue0bc](fg:color_orange bg:color_bg1)\
-"""
-style = 'bold fg:color_fg1 bg:color_orange'
+format = "[$state( $progress_current/$progress_total)]($style)"
+style = 'fg:bold white bg:color_orange'
 
-[cmd_duration]
-format = "[\uf4e3 $duration ]($style)"
-style = 'fg:color_fg4'
+[git_status]
+disabled = false
+format = '([$all_status$ahead_behind]($style) )'
+style = 'fg:bold color_fg0 bg:color_bg1'
 
 [status]
 disabled = false
-format = "[\uf467 $status ]($style)"
-style = 'bold fg:color_red'
+symbol = "\uf05c "
+format = '[$symbol$status]($style)'
+style = 'fg:bold white bg:color_red_bright'
+
+[git_metrics]
+disabled = false
+added_style = 'fg:bold color_green_bright'
+deleted_style = 'fg:bold color_red'
