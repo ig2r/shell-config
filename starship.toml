@@ -70,7 +70,7 @@ style = 'fg:bold white bg:color_orange'
 [git_status]
 disabled = false
 format = '[($all_status )($ahead_behind )]($style)'
-style = 'fg:bold color_fg0 bg:color_bg1'
+style = 'fg:bold color_fg2 bg:color_bg1'
 ahead = "\uf062"
 behind = "\uf063"
 
